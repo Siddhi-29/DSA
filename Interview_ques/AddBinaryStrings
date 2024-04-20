@@ -1,0 +1,65 @@
+/*
+Problem: 
+
+Given two binary strings A and B consisting of only 0s and 1s. Find the resultant string after adding the two Binary Strings.
+Note: The input strings may contain leading zeros but the output string should not have any leading zeros.
+
+
+Solution:
+
+*/
+
+package Interview_ques;
+
+public class AddBinaryStrings {
+
+	public static void main(String[] args) {
+		
+		AddBinaryStrings obj = new AddBinaryStrings();
+		String A = "10101";
+		String B = "111";
+		
+		String result = obj.addBinary(A, B);
+		System.out.println(result);
+	}
+    String addBinary(String A, String B) {
+        // code here
+        
+        A = removeZero(A);
+        B = removeZero(B);
+        
+        int first = A.length()-1;
+        int second = B.length()-1;
+        int carry = 0;
+        
+        StringBuilder result = new StringBuilder();
+        
+        while(first >= 0 || second >= 0 || carry > 0)
+        {
+            int x = (first >= 0) ? A.charAt(first)-'0' : 0;
+            int y = (second >= 0) ?B.charAt(second)-'0' : 0;
+            
+            first--;
+            second--;
+            
+            int sum = x+y+carry;
+            int rem = sum%2;
+            carry = sum/2;
+            
+            result.append(rem);
+        }
+        result.reverse();
+        
+        return result.toString();
+    }
+    
+    String removeZero(String str){
+        if(str.length() <= 1)
+            return str;
+        int i = 0;
+        while(i < str.length() && str.charAt(i) == '0'){
+            i++;
+        }
+       return str.substring(i);
+    }   
+}

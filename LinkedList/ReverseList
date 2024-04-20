@@ -1,0 +1,28 @@
+/*
+Problem:
+Given a linked list of N nodes. The task is to reverse this list.
+
+
+Solution:
+
+*/
+class Solution
+{
+    //Function to reverse a linked list.
+    Node reverseList(Node head)
+    {
+        // code here
+        if( head == null || head.next == null){
+            return head;
+        }
+        Node prev = null, curr = head;
+        while( curr!= null){
+            Node temp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
+        }
+        head = prev;
+        return head;
+   }
+}

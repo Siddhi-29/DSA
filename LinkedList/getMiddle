@@ -1,0 +1,36 @@
+/*
+Problem: Finding-middle-element-in-a-linked-list
+
+Given a singly linked list of N nodes.
+The task is to find the middle of the linked list. For example, if the linked list is
+1-> 2->3->4->5, then the middle node of the list is 3.
+If there are two middle nodes(in case, when N is even), print the second middle element.
+For example, if the linked list given is 1->2->3->4->5->6, then the middle node of the list is 4.
+
+
+Solution:
+
+*/
+
+class Solution
+{
+    int getMiddle(Node head)
+    {
+         // Your code here.
+         if(head == null ){
+             return 0;
+         }
+         Node curr = head;
+         int length=1;      //To calculate the length of the LinkedList
+         
+         while(curr.next!= null){
+             length = length+1;
+             curr = curr.next;          
+         }
+         curr= head;
+         for(int i=0; i<length/2 ; i++){
+            curr = curr.next;
+         }
+        return curr.data;
+    }
+}

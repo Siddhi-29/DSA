@@ -1,0 +1,25 @@
+/*
+Problem: Binary Search
+Given a sorted array of size N and an integer K, find the position(0-based indexing) at which K is present 
+in the array using binary search.
+
+Solution:
+
+*/
+class Solution {
+    int binarysearch(int arr[], int n, int k) {
+      
+        int start = 0;
+        int end = n - 1; // Adjusting the end index to match Java's array indexing
+        while (start <= end) {
+            int mid = (start + end) / 2;
+            if (arr[mid] == k)
+                return mid;
+            else if (arr[mid] > k)
+                end = mid - 1;
+            else
+                start = mid + 1;
+        }
+        return -1;
+    }
+}

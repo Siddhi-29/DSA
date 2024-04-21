@@ -1,0 +1,49 @@
+/*
+Problem: Intersection Point in Y Shaped Linked Lists
+
+Given two singly linked lists of size N and M, write a program to get the point where two linked lists intersect each other.
+
+Solution:
+
+*/
+
+class Intersect
+{
+    //Function to find intersection point in Y shaped Linked Lists.
+	int intersectPoint(Node head1, Node head2)
+	{
+        // code here
+        int size1=0;
+        int size2=0;
+        int diff;
+        Node curr1=head1, curr2=head2;
+        while( curr1 != null){
+            size1++;
+            curr1 = curr1.next;
+        }
+        while( curr2 != null){
+            size2++;
+            curr2 = curr2.next;
+        }
+        curr1 = head1;
+        curr2 = head2;
+        if( size1>size2){
+            diff = size1-size2;
+            for( int i=0; i<diff; i++){
+               curr1= curr1.next; 
+            }
+        }
+        else{
+            diff = size2-size1;
+            for( int i=0 ; i<diff; i++){
+                curr2 = curr2.next;
+            }
+        }
+        while(curr1 != curr2){
+            curr1 = curr1.next;
+            curr2 = curr2.next;
+            
+        }
+        return curr1.data;
+	}
+}

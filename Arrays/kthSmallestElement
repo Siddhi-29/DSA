@@ -1,0 +1,17 @@
+/*
+Problem: Kth smallest element
+Given an array arr[] and an integer k where k is smaller than the size of the array, 
+the task is to find the kth smallest element in the given array. It is given that all array elements are distinct.
+Note:-  l and r denotes the starting and ending index of the array.
+
+Solution:
+
+*/
+class Solution{
+    public static int kthSmallest(int[] arr, int l, int r, int k) 
+    { 
+        //Your code here
+         Arrays.sort(arr);
+        return arr[k-1];
+    } 
+}

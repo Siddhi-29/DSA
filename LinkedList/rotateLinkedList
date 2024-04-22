@@ -1,0 +1,36 @@
+/*
+Problem:
+Rotate a Linked List
+Given a singly linked list of size N. The task is to left-shift the linked list by k nodes,
+where k is a given positive integer smaller than or equal to length of the linked list.
+
+Solution:
+*/
+class Solution{
+    //Function to rotate a linked list.
+    public Node rotate(Node head, int k) {
+        // add code here
+        if(head==null){
+            return head;
+        }
+        Node rotate = head;
+        Node curr = head;
+        Node last;
+        int count = 1;
+        while(curr.next != null){
+            curr = curr.next;
+            count++;
+            if(count==k){
+                rotate = curr;
+            }
+        }
+        last = curr;
+        last.next = head;
+        head = rotate.next;
+        rotate.next = null;
+        
+        return head;
+        
+    }
+}
+

@@ -1,0 +1,31 @@
+/*
+Problem: Remove Duplicates from an unsorted Linked List
+
+Given an unsorted linked list of N nodes. The task is to remove duplicate elements from this unsorted Linked List.
+When a value appears in multiple nodes, the node which appeared first should be kept, all others duplicates are to be removed.
+
+Solution:
+*/
+
+class Solution
+{
+    //Function to remove duplicates from unsorted linked list.
+    public Node removeDuplicates(Node head) 
+    {   // Your code here
+        Node curr = head;
+        Node prev = null;
+        HashSet<Integer> set = new HashSet<>();
+        while(curr != null){
+            if(set.contains(curr.data)){
+                prev.next=curr.next;
+            }
+            else{
+                set.add(curr.data);
+                prev=curr;
+            }
+            curr = curr.next;
+           
+        }
+        return head;
+    }
+}

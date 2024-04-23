@@ -1,0 +1,40 @@
+/*
+Problem: Check if two arrays are equal or not
+Given two arrays A and B of equal size N, the task is to find if given arrays are equal or not. Two arrays are said to be equal if both of them contain same set of elements, arrangements (or permutation) of elements may be different though.
+Note : If there are repetitions, then counts of repeated elements must also be same for two array to be equal.
+
+Solution:
+*/
+
+class Solution{
+    //Function to check if two arrays are equal or not.
+    public static boolean check(long A[],long B[],int N)
+    {
+        HashMap<Integer,Integer>h1 = new HashMap<>();
+        HashMap<Integer,Integer>h2 = new HashMap<>();
+        for(long i:A){
+            int m=(int) i;
+            if(h1.containsKey(m)){
+                h1.put(m,h1.get(m)+1);
+            }
+            else{
+                h1.put(m,1);
+            }
+        }
+            for(long i:B){
+            int s=(int) i;
+            if(h2.containsKey(s)){
+                h2.put(s,h2.get(s)+1);
+            }
+            else{
+                h2.put(s,1);
+            }
+            }
+            if(h1.equals(h2)){
+                return true;
+            }
+            else{
+                return false;
+            }
+    }
+}

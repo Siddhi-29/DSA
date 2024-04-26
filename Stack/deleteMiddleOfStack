@@ -1,0 +1,28 @@
+/*
+Problem: Delete middle element of a stack
+
+Given a stack, delete the middle element of the stack without using any additional data structure.
+Middle element:- floor((size_of_stack+1)/2) (1-based indexing) from bottom of the stack.
+
+Note: The output shown by the compiler is the stack from top to bottom.
+
+Solution:
+*/
+
+class Solution
+{
+    //Function to delete middle element of a stack.
+    public void deleteMid(Stack<Integer>s,int sizeOfStack){
+        // code here
+        Stack<Integer> s1=new Stack<Integer>();
+        int mid = s.size()/2;
+        for( int i=0; i<mid; i++){
+            s1.push(s.pop());
+        }
+        s.pop();
+        while(!s1.isEmpty()){
+            s.push(s1.pop());
+        }
+      
+    } 
+}

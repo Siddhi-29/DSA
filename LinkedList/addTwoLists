@@ -1,0 +1,84 @@
+/*
+Problem: Add two numbers represented by linked lists
+
+Given two numbers, num1 and num2, represented by linked lists of size n and m respectively. The task is to return a linked list that represents the sum of these two numbers.
+
+For example, the number 190 will be represented by the linked list, 1->9->0->null, similarly 25 by 2->5->null. Sum of these two numbers is 190 + 25 = 215, which will be represented by 2->1->5->null. You are required to return the head of the linked list 2->1->5->null.
+
+Note: There can be leading zeros in the input lists, but there should not be any leading zeros in the output list.
+
+Solution:
+*/
+
+class Solution{
+    //Function to add two numbers represented by linked list.
+    static Node addTwoLists(Node num1, Node num2){
+        
+        Node sum = null;
+        Node curr1 = removeZero(num1);
+        Node curr2 = removeZero(num2);
+        curr1 = reverse(curr1);
+        curr2 = reverse(curr2);
+        int carry = 0;
+        
+        while(curr1 != null || curr2 != null || carry>0){
+            
+            int x = (curr1 == null) ? 0 : curr1.data;
+            int y = (curr2 == null) ? 0 : curr2.data;
+            
+            int tempSum = x+y+carry;
+            carry = tempSum / 10;
+            int rem = tempSum % 10;
+            
+            sum = insertNode(sum, rem);
+            
+            if(curr1 != null){
+                curr1 = curr1.next;
+            }
+            if(curr2 != null){
+                curr2 = curr2.next;
+            }
+        }
+        return reverse(sum);
+        
+        
+    }
+    
+    public static Node reverse(Node head){
+        Node prev = null, curr = head;
+        Node temp;
+        while(curr != null){
+            temp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
+        }
+        head = prev;
+        return head;
+    }
+    
+    public static Node removeZero(Node head){
+        Node curr = head;
+        while(curr != null && curr.data == 0){
+            curr = curr.next;
+        }
+        if(curr == null)    return new Node(0);
+        head = curr;
+        return head;
+    }
+    
+    public static Node insertNode(Node head, int data){
+        Node nn = new Node(data);
+        if(head == null){
+            return nn;
+        }
+        
+        Node curr = head;
+        
+        while(curr.next != null){
+            curr = curr.next;
+        }
+        curr.next = nn;
+        return head;
+    }
+}

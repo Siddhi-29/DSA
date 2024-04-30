@@ -1,0 +1,29 @@
+/*
+Problem: Linked List Length Even or Odd
+Given a linked list of size n, your task is to complete the function isLengthEvenOrOdd() which contains the head of 
+the linked list and check whether the length of the linked list is even or odd.
+
+Solution:
+*/
+
+class GFG
+{
+	int isLengthEvenorOdd(Node head1)
+	{
+	    //Add your code here.
+	    Node curr = head1;
+	    int count = 0;
+	    while(curr!= null){
+	        curr = curr.next;
+	        count++;
+	    }
+	    if(count%2 == 0){
+	       return 0;
+	    }
+	    else{
+	       return 1;
+	    }
+	}
+	
+	
+}

@@ -1,0 +1,47 @@
+/*
+Problem: Median of 2 sorted Arrays of Different Size
+Given two sorted arrays array1 and array2 of size m and n respectively. Find the median of the two sorted arrays.
+
+Solution:
+*/
+
+class GFG 
+{ 
+    static double medianOfArrays(int n, int m, int a[], int b[]) 
+    {
+        // Your Code Here
+        int[] arr = new int[m+n];
+        int i=0,j=0,index =0;
+        while(i<n && j<m){
+            if(a[i]<b[j]){
+                arr[index]=a[i];
+                index++;
+                i++;
+            }
+            else{
+                arr[index]=b[j];
+                index++;
+                j++;
+            }
+        }
+        while(i<n){
+            arr[index]= a[i];
+            index++;
+            i++;
+        }
+        while(j<m){
+            arr[index]=b[j];
+            index++;
+            j++;
+        }
+        double median;
+        int len=arr.length;
+        if(len%2==0){
+            median = (double)(arr[len/2]+arr[(len-1)/2])/2;
+        }
+        else{
+            median = arr[len/2];
+        }
+        return median;
+    }
+}

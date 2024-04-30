@@ -1,0 +1,17 @@
+/*
+Problem: Delete Alternate Node
+Given a Singly Linked List of size n, delete all alternate nodes of the list.
+
+Solution:
+*/
+
+class Solution {
+    
+    public void deleteAlternate (Node head){
+        //Write your code here
+        while( head!=null && head.next !=null){
+            head.next = head.next.next;
+            head = head.next;
+        }
+    }
+}

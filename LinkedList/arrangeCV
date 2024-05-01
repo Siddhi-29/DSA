@@ -1,0 +1,52 @@
+/*
+Problem: Arrange Consonants and Vowels
+
+Given a singly linked list having n nodes containing english alphabets ('a'-'z'). Rearrange the linked list in such a way that all the vowels come before the consonants while maintaining the order of their arrival. 
+
+Solution:
+*/
+
+class Solution {
+    
+    public Node arrangeCV(Node head){
+        //write code here and return the head of changed linked list
+        Node curr = head;
+        Node vnode = null, cnode = null;
+        Node vtail = null, ctail = null;
+        
+        while(curr != null){
+            
+            if(curr.data == 'a' || curr.data == 'e' || curr.data == 'i' || curr.data == 'o' || curr.data == 'u'){
+                
+               if(vnode == null){
+                    vnode = curr;
+                    vtail = curr;
+               }
+               else{
+                   vtail.next = curr;
+                   vtail = curr;
+               }
+            }
+            else{
+                if(cnode == null){
+                    cnode = curr;
+                    ctail = curr;
+                }
+                else{
+                    ctail.next = curr;
+                    ctail = curr;
+                }
+            }
+        curr = curr.next;
+        }
+        
+        if(vnode == null)
+            return cnode;
+            
+        vtail.next = cnode;
+        if(ctail != null)
+            ctail.next = null;
+        
+        return vnode;
+    }
+}

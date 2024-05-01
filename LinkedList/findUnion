@@ -1,0 +1,44 @@
+/*
+Problem: Union of Two Linked 
+
+Given two linked lists, your task is to complete the function makeUnion(), that returns the union list of two linked lists. This union list should include all the distinct elements only and it should be sorted in ascending order.
+
+Solution:
+*/
+class Sol
+{
+	public static Node findUnion(Node head1,Node head2)
+	{
+	    //Add your code here.
+	    Node curr1 = head1, curr2 = head2;
+	    Node head = null, tail = null;
+	    
+	    ArrayList<Integer> list = new ArrayList<>();
+	    
+	    while(curr1 != null){
+	        if(!list.contains(curr1.data))
+	            list.add(curr1.data);
+	       curr1 = curr1.next;
+	    }
+	    while(curr2 != null){
+	        if(!list.contains(curr2.data))
+	            list.add(curr2.data);
+	       curr2 = curr2.next;
+	    }
+	    
+	    Collections.sort(list);
+	    for( int ele : list){
+	        if(head == null){
+	            head = new Node(ele);
+	            tail = head;
+	        }
+	        else{
+	            Node nn = new Node(ele);
+	            tail.next = nn;
+	            tail = nn;
+	        }
+	    }
+	    return head;
+	    
+	}
+}

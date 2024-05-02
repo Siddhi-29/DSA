@@ -1,0 +1,39 @@
+/*
+Problem: Equilibrium Point
+
+Given an array A of n non negative numbers. The task is to find the first equilibrium point in an array. Equilibrium point in an array is an index (or position) such that the sum of all elements before that index is same as sum of elements after it.
+
+Note: Return equilibrium point in 1-based indexing. Return -1 if no such point exists. 
+
+Solution:
+*/
+
+class Solution {
+    // a: input array
+    // n: size of array
+    // Function to find equilibrium point in the array.
+    public static int equilibriumPoint(long arr[], int n) {
+
+        // Your code here
+        long prearr[] = new long[n];
+        long sufarr[] = new long[n];
+        long sum=0;
+        for(int i=0; i<n; i++){
+            
+            sum=sum+arr[i];
+            prearr[i]=sum;
+        }
+        sum=0;
+        for(int i=n-1; i>=0; i--){
+            sum=sum+arr[i];
+            sufarr[i]= sum;
+        }
+        for(int i=0; i<n; i++){
+            if(prearr[i]==sufarr[i]){
+                return i+1;
+            }
+        }
+        return -1;
+        
+    }
+}

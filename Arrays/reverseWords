@@ -1,0 +1,34 @@
+/*
+Problem: Reverse words in a given string
+
+Given a String S, reverse the string without reversing its individual words. Words are separated by dots.
+
+Solution:
+*/
+
+class Solution 
+{
+    //Function to reverse words in a given string.
+    String reverseWords(String S)
+    {
+        // code here 
+        String temp="", ans ="";
+        for( int i=0 ;i<S.length(); i++){
+            char c = S.charAt(i);
+            
+            if(c == '.'){
+                ans ='.'+temp+ans;
+                temp="";
+            }
+            else{
+                temp += c;
+            }
+            if(i == S.length()-1){
+                ans=temp+ans;
+            }
+            
+        }
+        
+        return ans;
+    }
+}

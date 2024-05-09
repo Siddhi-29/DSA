@@ -1,0 +1,40 @@
+/*
+Problem: Maximum Occuring Character
+
+Given a string str of lowercase alphabets. The task is to find the maximum occurring character in the string str. If more than one character occurs the maximum number of time then print the lexicographically smaller character.
+
+Solution:
+*/
+class Solution
+{
+    //Function to find the maximum occurring character in a string.
+    public static char getMaxOccuringChar(String line)
+    {
+        // Your code here
+        int max= 0;
+        char ans='a';
+        HashMap<Character, Integer> hm = new HashMap<>();
+        //char[] arr = line.toCharArray();
+        //for( char c : arr){
+        for( int i=0; i< line.length(); i++){
+            char c = line.charAt(i);                
+            //updating hashmap
+            if(!hm.containsKey(c)){
+                hm.put(c,1);
+            }
+            else{
+                hm.put(c,hm.get(c)+1);
+            }
+            //checking max occurance
+            if(hm.get(c) == max && c<ans){
+                ans = c;
+            }
+            else if(hm.get(c)>max){
+                max=hm.get(c);
+                ans = c;
+            }
+        }
+        return ans;
+    }
+    
+}

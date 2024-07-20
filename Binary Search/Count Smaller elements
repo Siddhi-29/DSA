@@ -1,0 +1,37 @@
+/*
+Problem: Count Smaller elements
+Given an array arr containing non-negative integers. Count and return an array ans where ans[i] denotes the number of smaller elements on right side of arr[i].
+
+Solution:
+*/
+
+class Solution {
+    int[] constructLowerArray(int[] arr) {
+        // code here
+        ArrayList<Integer> list = new ArrayList<>();
+        for(int i=arr.length-1; i>=0; i--){
+            int toInsert = getIndex(list , arr[i]);
+            list.add(toInsert , arr[i]);
+           // System.out.println("arr[i] : " + arr[i]);
+            //System.out.println("i : " + i + " , " + toInsert);
+            //System.out.println(list);
+            arr[i] = toInsert;
+        }
+        return arr;
+    }
+    
+    int getIndex(ArrayList<Integer> list , int ele){
+        if(list.size() == 0) return 0;
+        int beg = 0 , end = list.size()-1;
+        int mid;
+        while(beg <= end){
+            mid = beg + (end-beg)/2;
+            if(list.get(mid) >= ele)
+                end = mid-1;
+            else
+                beg = mid + 1;
+        }
+        //System.out.println("beg : " + beg + "   end ; " + end);
+        return beg;
+    }
+}

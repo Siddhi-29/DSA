@@ -1,0 +1,51 @@
+/*
+Problem: Devil Groups
+
+There are some groups of devils and they splitted into people to kill them. Devils make People to them left as their group and at last the group with maximum length will be killed. Two types of devils are there namely “@” and “$”
+People is represented as a string “P”
+
+Input Format:
+First line with the string for input
+
+Output Format:
+Number of groups that can be formed.
+
+Constraints:
+2<=Length of string<=10^9
+
+Input string
+PPPPPP@PPP@PP$PP
+
+Solution:
+*/
+public class Main {
+    public static int countGroups(String s) {
+        int n = s.length();
+        int groups = 0;
+        int i = 0;
+
+        // Traverse the string
+        while (i < n) {
+            // Check for a group of 'P's followed by either '@' or '$'
+            if (s.charAt(i) == 'P') {
+                // Move through the 'P's
+                while (i < n && s.charAt(i) == 'P') {
+                    i++;
+                }
+                // After the 'P's, there must be a '@' or '$' to form a group
+                if (i < n && (s.charAt(i) == '@' || s.charAt(i) == '$')) {
+                    groups++;
+                }
+            }
+            i++;
+        }
+        
+        return groups;
+    }
+
+    public static void main(String[] args) {
+        String inputString = "PPPPPP@PPP@PP$PP";
+        int result = countGroups(inputString);
+        System.out.println(result);  // Output: 3
+    }
+}

@@ -1,0 +1,16 @@
+package recursion;
+
+public class BaseCase {
+
+	public static void main(String[] args) {
+		int i = 1;
+		System.out.println("Hi this is main!");
+		fun(i);
+	}
+	public static void fun(int i) {
+		if(i<=10) {
+			System.out.println(i);
+			fun(i+1);
+		}
+	}
+}

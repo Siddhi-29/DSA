@@ -1,0 +1,15 @@
+package recursion;
+
+public class InfiniteLoop {
+
+	public static void main(String[] args) {
+		System.out.println("Hi this is main");
+		int i = 1;
+		fun(i);
+	}
+
+	public static void fun(int i) {
+		System.out.println(i);
+		fun(i + 1);
+	}
+}

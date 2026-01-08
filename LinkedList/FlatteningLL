@@ -1,0 +1,132 @@
+/*
+*
+Flattening a Linked List
+
+Given a linked list containing n head nodes where every node in the linked list contains two pointers:
+(i) next points to the next node in the list.
+(ii) bottom points to a sub-linked list where the current node is the head.
+Each of the sub-linked lists nodes and the head nodes are sorted in ascending order based on their data. Flatten the linked list such that all the nodes appear in a single level while maintaining the sorted order.
+
+Note:
+1. ↓ represents the bottom pointer and → represents the next pointer.
+2. The flattened list will be printed using the bottom pointer instead of the next pointer.
+*
+*/
+
+/*
+class Node {
+    int data;
+    Node next;
+    Node bottom;
+
+    Node(int x) {
+        data = x;
+        next = null;
+        bottom = null;
+    }
+}
+*/
+
+class Solution {
+    public Node flatten(Node root) {
+        // code here
+        solve(root);
+        
+        Node tempHead = root;
+        Node currNode = root;
+        Node itr = root.next;
+        
+        while (itr != null)
+        {
+            currNode.bottom = itr;
+            currNode.next = null;
+            currNode = itr;
+            
+            itr = itr.next;
+        }
+        
+        return tempHead;
+    }
+    
+    public void solve(Node currNode)
+    {
+        if (currNode == null)
+            return;
+        
+        if (currNode.bottom == null)
+            solve(currNode.next);
+        
+        if (currNode.next == null && currNode.bottom != null)
+        {
+            currNode.next = currNode.bottom;
+            currNode.bottom = null;
+            solve(currNode.next);
+        }
+        
+        
+        if (currNode.next != null && currNode.bottom != null)
+        {
+            if (currNode.next.data > currNode.bottom.data)
+            {
+                currNode.bottom.next = currNode.next;
+                currNode.next = currNode.bottom;
+                currNode.bottom = null;
+            }
+            else
+            {
+                currNode.next.bottom = mergeLL(currNode.bottom, currNode.next.bottom);
+                currNode.bottom = null;
+            }
+            
+            solve(currNode.next);
+        }
+    }
+    
+    public Node mergeLL(Node node1, Node node2)
+    {
+        Node root = null;
+        Node currNode = null;
+        
+        if (node1 == null)
+            return node2;
+        else if (node2 == null)
+            return node1;
+        
+        while (node1 != null && node2 != null)
+        {
+            Node tempNode;
+            
+            if (node1.data < node2.data)
+            {
+                tempNode = node1;
+                node1 = node1.bottom;
+            }
+            else
+            {
+                tempNode = node2;
+                node2 = node2.bottom;
+            }
+            
+            if (root == null)
+            {
+                root = tempNode;
+                currNode = tempNode;
+            }
+            else
+            {
+                currNode.bottom = tempNode;
+                currNode = tempNode;
+            }
+        }
+        
+        if (currNode != null)
+        {
+         if (node1 != null)
+             currNode.bottom = node1;
+         else if (node2 != null)
+               currNode.bottom = node2;
+        }
+        
+        return root;
+    }
+}
